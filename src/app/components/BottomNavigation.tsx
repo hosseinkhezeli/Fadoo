@@ -2,6 +2,9 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import WaveTexture from "@/app/assets/images/WaveTexture.png";
 import Image from "next/image";
+import { useEffect } from "react";
+import { debounce } from "@/utils/methods";
+
 const buttons = [
   { id: "who-am-i", label: "سینا!" },
   { id: "videography", label: "ویدیو" },
@@ -11,12 +14,10 @@ const buttons = [
 ];
 
 export function BottomNavigation() {
-  //Dependencies
   const { push: navigateTo } = useRouter();
   const searchParams = useSearchParams();
   const currentView = searchParams.get("view") || "home";
 
-  //Handlers
   const scrollToComponent = (id: string) => {
     const element = document.getElementById(id);
     navigateTo(`?view=${id}`, { scroll: true });
@@ -25,27 +26,46 @@ export function BottomNavigation() {
     }
   };
 
+  useEffect(() => {
+    const scrollToCurrentView = () => {
+      const element = document.getElementById(currentView);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    };
+
+    scrollToCurrentView();
+
+    const debouncedScroll = debounce(scrollToCurrentView, 100);
+
+    window.addEventListener("resize", debouncedScroll);
+
+    return () => {
+      window.removeEventListener("resize", debouncedScroll);
+    };
+  }, [currentView]);
+
   return (
-    <div className={className.container}>
-      <div className={className.buttonWrapper}>
+    <nav className={className.container}>
+      <ol className={className.buttonWrapper}>
         {buttons.map(({ id, label }) => (
-          <div key={id} className={className.buttonContainer}>
+          <li key={id} className={className.buttonContainer}>
             <button
               onClick={() => scrollToComponent(id)}
-              className={`${className.navButton}  ${
+              className={`${className.navButton} ${
                 currentView === id ? "text-white border" : ""
               }`}
             >
               {label}
             </button>
-          </div>
+          </li>
         ))}
         <div
           className={`
             ${className.navIndicator} 
             ${calculateTransform(currentView)}`}
         />
-      </div>
+      </ol>
       <Image
         width={340}
         height={340}
@@ -54,12 +74,12 @@ export function BottomNavigation() {
         alt="wabi-sabi wave texture"
         className={`${className.Image} ${calculateRotate(currentView)}`}
       />
-    </div>
+    </nav>
   );
 }
 
 const className: { [key: string]: string } = {
-  container: "fixed bottom-0 left-0 right-0 p-4 w-1/3 max-w-[548px] m-auto",
+  container: "fixed bottom-0 left-0 right-0 p-4 w-full max-w-[548px] m-auto",
   buttonWrapper: "relative flex justify-evenly",
   buttonContainer:
     "w-full max-w-1/5 z-10  min-h-8 flex justify-center items-center",
@@ -77,7 +97,7 @@ const calculateTransform = (currentView: string | null) => {
       return "-translate-x-[0%]";
     case "videography":
       return "-translate-x-[100%]";
-    case "main-page":
+    case "home":
       return "-translate-x-[200%]";
     case "discography":
       return "-translate-x-[300%]";
@@ -94,7 +114,7 @@ const calculateRotate = (currentView: string | null) => {
       return "-rotate-[0deg]";
     case "videography":
       return "-rotate-[100deg]";
-    case "main-page":
+    case "home":
       return "-rotate-[200deg]";
     case "discography":
       return "-rotate-[300deg]";
