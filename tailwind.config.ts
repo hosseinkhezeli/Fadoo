@@ -17,6 +17,9 @@ const config: Config = {
         primary: {
           main: "#c63a42",
         },
+        fadoo_background: {
+          main: "#dfccbc",
+        },
       },
     },
   },
