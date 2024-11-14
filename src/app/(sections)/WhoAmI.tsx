@@ -8,8 +8,10 @@ import { Container } from "@/components/Container";
 export function WhoAmI() {
   return (
     <Container id={"who-am-i"}>
-      <div className="flex w-full max-w-[1024px] items-center gap-14">
-        <PortraitInSun />
+      <div className="flex h-full  w-full max-w-[1024px] items-start gap-14">
+        <div className="basis-1/2 h-3/4 flex items-center justify-center">
+          <PortraitInSun />
+        </div>
         <div className="basis-1/2 flex flex-col items-end gap-14">
           <Image
             src={ImgBirds}
