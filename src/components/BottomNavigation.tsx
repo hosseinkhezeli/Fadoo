@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import WaveTexture from "@/assets/images/WaveTexture.png";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { debounce } from "@/utils/methods";
 
 const buttons = [
@@ -15,35 +15,37 @@ const buttons = [
 
 export function BottomNavigation() {
   const { push: navigateTo } = useRouter();
+  const [mounted, setMounted] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const currentView = searchParams.get("view") || "home";
+  const currentViewRef = useRef<HTMLElement | null>(null);
 
   const scrollToComponent = (id: string) => {
-    const element = document.getElementById(id);
+    currentViewRef.current = document.getElementById(id);
     navigateTo(`?view=${id}`, { scroll: true });
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (currentViewRef.current) {
+      currentViewRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   useEffect(() => {
+    currentViewRef.current = document.getElementById(currentView);
     const scrollToCurrentView = () => {
-      const element = document.getElementById(currentView);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (currentViewRef.current) {
+        currentViewRef.current.scrollIntoView({ behavior: "instant" });
       }
     };
 
-    scrollToCurrentView();
+    window.addEventListener("load", () => setMounted(true));
+    if (!mounted) scrollToCurrentView();
 
-    const debouncedScroll = debounce(scrollToCurrentView, 100);
-
-    window.addEventListener("resize", debouncedScroll);
+    window.addEventListener("resize", debounce(scrollToCurrentView, 100));
+    console.log(currentView);
 
     return () => {
-      window.removeEventListener("resize", debouncedScroll);
+      window.removeEventListener("resize", debounce(scrollToCurrentView, 100));
     };
-  }, [currentView]);
+  }, []);
 
   return (
     <nav className={className.container}>
