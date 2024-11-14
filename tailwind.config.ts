@@ -8,9 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        DEFAULT: "8px",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          main: "#c63a42",
+        },
+        fadoo_background: {
+          main: "#dfccbc",
+        },
       },
     },
   },
