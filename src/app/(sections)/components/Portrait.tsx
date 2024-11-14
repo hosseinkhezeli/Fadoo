@@ -3,21 +3,7 @@ import Image from "next/image";
 import ImgBrushes from "@/assets/images/Brushes1.png";
 import SvgBrushLine from "@/assets/images/BrushLine.svg";
 import SvgPortraitDoodle from "@/assets/images/PortrateDoodle.svg";
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 export function Portrait() {
-  //   const searchParams = useSearchParams();
-  //   const currentView = searchParams.get("view") || "home";
-  //   useEffect(() => {
-  //     const debouncedScroll = (data) => console.log(data);
-
-  //     window.addEventListener("mousemove", debouncedScroll);
-
-  //     return () => {
-  //       window.removeEventListener("mousemove", debouncedScroll);
-  //     };
-  //   }, [currentView]);
-  //   console.log();
   return (
     <>
       <div className="relative w-screen">
