@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Script from "next/script";
+// import Script from "next/script";
 export function LandingLayout({
   children,
 }: Readonly<{
@@ -25,11 +25,11 @@ export function LandingLayout({
   return (
     <>
       {isLoading ? "Loading..." : children}
-      <Script
+      {/* <Script
         src="http://localhost:3000/_next/static/chunks/main-app.js" // Replace with your script URL
         strategy="worker" // Load after the page is loaded
         onLoad={() => setIsLoading(false)}
-      />
+      /> */}
     </>
   );
 }
