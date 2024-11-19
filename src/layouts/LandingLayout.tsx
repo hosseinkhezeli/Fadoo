@@ -16,7 +16,6 @@ export function LandingLayout({
       setIsLoading(false);
     };
 
-    // Check if the page has already loaded
     if (document.readyState === "complete") {
       onPageLoad();
     } else {
@@ -33,7 +32,7 @@ export function LandingLayout({
         src="_next/static/chunks/main-app.js" // Replace with your script URL
         strategy="worker" // Load after the page is loaded
         onLoad={() => setIsLoading(false)}
-      />
+      /> */}
     </>
   );
 }
