@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { LandingLayout } from "@/layouts/LandingLayout";
+import Image from "next/image";
 
+import { LandingLayout } from "@/layouts/LandingLayout";
+import BGTexture from "@/assets/images/BGTexture.svg";
 const iranSans = localFont({
   src: [
     {
@@ -69,9 +71,15 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${iranSans.className} antialiased bg-fadoo_background-main`}
+        className={`${iranSans.className} relative antialiased bg-fadoo_background-main`}
       >
         <LandingLayout>{children}</LandingLayout>
+        <Image
+          src={BGTexture}
+          alt="background"
+          fill
+          className="movable object-fill opacity-10   brightness-0 w-full h-full absolute top-0 left-0 -z-[1]"
+        />
       </body>
     </html>
   );

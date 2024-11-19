@@ -18,9 +18,9 @@ export function WhoAmI() {
             width={387}
             height={259}
             alt="illustration of birds"
-            className="mix-blend-darken"
+            className="movable mix-blend-darken"
           />
-          <div className="relative">
+          <div className="movable  relative">
             <Image
               src={ImgBrush}
               width={633}
@@ -44,7 +44,13 @@ export function WhoAmI() {
               {ABOUT_ME_L6}.
             </p>
           </div>
-          <Image src={ImgBrush2} width={74} height={61} alt="brush mark" />
+          <Image
+            src={ImgBrush2}
+            width={74}
+            height={61}
+            alt="brush mark"
+            className="movable"
+          />
         </div>
       </div>
     </Container>
