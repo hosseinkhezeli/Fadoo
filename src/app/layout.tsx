@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${iranSans.className} relative antialiased bg-fadoo_background-main`}
+        className={`${iranSans.className} relative antialiased bg-fadoo_background-main overflow-hidden`}
       >
         <LandingLayout>{children}</LandingLayout>
         <Image
