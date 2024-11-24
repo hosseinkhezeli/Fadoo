@@ -29,10 +29,10 @@ export function LandingLayout({
     <>
       {isLoading ? "Loading..." : children}
       <Script
-        src="_next/static/chunks/main-app.js" // Replace with your script URL
-        strategy="worker" // Load after the page is loaded
+        src="_next/static/chunks/main-app.js" 
+        strategy="worker"
         onLoad={() => setIsLoading(false)}
-      />{" "}
+      />
     </>
   );
 }
