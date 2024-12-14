@@ -8,27 +8,27 @@ import { Container } from "@/components/Container";
 export function WhoAmI() {
   return (
     <Container id={"who-am-i"}>
-      <div className="flex h-full  w-full max-w-[1024px] items-start gap-14">
-        <div className="basis-1/2 h-3/4 flex items-center justify-center">
+      <div className="flex flex-col max-w-[1024px] items-start gap-14  h-full w-full md:flex-row ">
+        <div className="flex items-center justify-center w-1/2 h-1/3 order-2 md:order-none md:w-auto md:basis-1/2 md:h-3/4">
           <PortraitInSun />
         </div>
-        <div className="basis-1/2 flex flex-col items-end gap-14">
-          <Image
-            src={ImgBirds}
-            width={387}
-            height={259}
-            alt="illustration of birds"
-            className="movable mix-blend-darken"
-          />
-          <div className="movable  relative">
+        <Image
+          src={ImgBirds}
+          width={387}
+          height={259}
+          alt="illustration of birds"
+          className="movable mix-blend-darken absolute top-0 left-0 w-1/2 order-1 max-w-96 md:w-1/3  md:order-none "
+        />
+        <div className="w-9/12 mx-auto order-3 flex flex-col items-end gap-14 md:basis-1/2 md:order-none md:h-5/6 md:justify-end ">
+          <div className="movable relative">
             <Image
               src={ImgBrush}
               width={633}
               height={450}
               alt="brush mark"
-              className="scale-125"
+              className="scale-y-[220%] translate-y-[40%] md:-translate-y-0 md:scale-125 "
             />
-            <p className="absolute text-sm p-6  -top-6 left-0 right-0 leading-loose">
+            <p className=" absolute text-xs  md:text-sm p-6  -top-6 left-0 right-0 leading-loose">
               {ABOUT_ME_L1}.
               <br />
               {ABOUT_ME_L2}.

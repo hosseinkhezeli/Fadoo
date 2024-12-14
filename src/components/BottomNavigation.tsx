@@ -74,7 +74,7 @@ export function BottomNavigation() {
         src={WaveTexture}
         quality={100}
         alt="wabi-sabi wave texture"
-        className={`${className.Image} ${calculateRotate(currentView)}`}
+        className={`${className.Image}  ${calculateRotate(currentView)}`}
       />
     </nav>
   );
@@ -90,7 +90,7 @@ const className: { [key: string]: string } = {
   navIndicator:
     "absolute left-0 right-0 bottom-0 min-h-8 bg-primary-main w-1/5 transition-transform duration-300 rounded",
   Image:
-    "absolute left-0 right-0 -translate-x-[108px] -top-[150%] -z-10 opacity-20 transition-transform duration-500",
+    "absolute left-0 right-0 -translate-x-[40px] sm:-translate-x-[108px] -top-[150%] -z-10 opacity-20 transition-transform duration-500",
 };
 
 const calculateTransform = (currentView: string | null) => {
