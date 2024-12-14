@@ -53,8 +53,8 @@ export function VideoList() {
       ref={scrollRef}
       className="grid grid-cols-3 pl-2 w-max max-h-[252px] overflow-y-auto gap-x-2 gap-y-2"
     >
-      {Array.from("123456789123456789").map(() => {
-        return <VideoThumbnail />;
+      {Array.from("123456789123456789").map((arr,idx) => {
+        return <VideoThumbnail key={idx}  />;
       })}
     </div>
   );
